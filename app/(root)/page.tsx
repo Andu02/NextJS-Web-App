@@ -1,5 +1,7 @@
-import PostCard from "@/components/PostCard";
+import PostCard, { PostCardType } from "@/components/PostCard";
 import SearchForm from "@/components/SearchForm";
+import { client } from "@/sanity/lib/client";
+import { POSTS_QUERY } from "@/sanity/lib/queries";
 
 export default async function Home({
   searchParams,
@@ -8,36 +10,8 @@ export default async function Home({
 }) {
   const query = (await searchParams).query;
 
-  const posts = [
-    {
-      _createdAt: new Date(),
-      views: 55,
-      author: {
-        _id: 1,
-        name: "John Doe",
-        profilePicture: "https://placehold.co/100x100.png",
-      },
-      _id: 1,
-      description: "This is a sample post",
-      image: "https://placehold.co/600x400",
-      category: "General",
-      title: "Sample Post",
-    },
-    {
-      _createdAt: new Date(),
-      views: 55,
-      author: {
-        _id: 2,
-        name: "John Doe",
-        profilePicture: "https://placehold.co/100x100.png",
-      },
-      _id: 2,
-      description: "This is a sample post",
-      image: "https://placehold.co/600x400",
-      category: "General",
-      title: "Sample Post",
-    },
-  ];
+  const posts = (await client.fetch(POSTS_QUERY)) as PostCardType[];
+
   return (
     <>
       <section className="header-container animated-gradient">
@@ -56,7 +30,7 @@ export default async function Home({
 
         <ul className="card-grid">
           {posts?.length > 0 ? (
-            posts.map((post: PostCardType, index: number) => (
+            posts.map((post: PostCardType) => (
               <PostCard key={post?._id} post={post} />
             ))
           ) : (
