@@ -209,11 +209,31 @@ export type POSTS_QUERYResult = Array<{
   category: string | null;
   image: string | null;
 }>;
+// Variable: POST_BY_ID_QUERY
+// Query: *[_type=="post" && _id == $id][0]{  _id, title,     slug,     _createdAt,     author -> {      _id, name, image, bio    },     views,     description,     category,     image,    pitch}
+export type POST_BY_ID_QUERYResult = {
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  _createdAt: string;
+  author: {
+    _id: string;
+    name: string | null;
+    image: string | null;
+    bio: string | null;
+  } | null;
+  views: number | null;
+  description: string | null;
+  category: string | null;
+  image: string | null;
+  pitch: string | null;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type==\"post\" && defined(slug.current) && !defined($search) || title match $search|| category match $search || author->name match $search] | order(_createdAt desc) {\n  _id, title, \n    slug, \n    _createdAt, \n    author -> {\n      _id, name, image, bio\n    }, \n    views, \n    description, \n    category, \n    image\n}": POSTS_QUERYResult;
+    "*[_type==\"post\" && _id == $id][0]{\n  _id, title, \n    slug, \n    _createdAt, \n    author -> {\n      _id, name, image, bio\n    }, \n    views, \n    description, \n    category, \n    image,\n    pitch\n}": POST_BY_ID_QUERYResult;
   }
 }

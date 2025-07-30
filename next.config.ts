@@ -11,8 +11,15 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "imgs.search.brave.com",
       },
-      // Adaugă aici alte domenii dacă mai ai imagini de la alte surse
     ],
+  },
+
+  // experimental: {
+  //   ppr: 'incremental', // comentat pentru că nu e suportat în versiunea actuală de Next.js
+  // },
+
+  devIndicators: {
+    position: 'bottom-right',
   },
 };
 
