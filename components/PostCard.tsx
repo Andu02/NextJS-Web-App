@@ -20,7 +20,7 @@ const PostCard = ({ post }: { post: PostCardType }) => {
   } = post;
 
   return (
-    <li className="post-card mb-10 group relative">
+    <li className="post-card mb-10 group relative custom-shadow">
       <div className="post-card-top">
         <p className="post-card-date">{formatDate(_createdAt)}</p>
         <div className="post-card-views">

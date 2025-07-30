@@ -5,7 +5,13 @@ import Image from "next/image";
 
 const SearchForm = ({ query }: { query?: string }) => {
   return (
-    <Form action="/" scroll={false} className="search-form" autoComplete="off">
+    <Form
+      key={query}
+      action="/"
+      scroll={false}
+      className="search-form custom-shadow"
+      autoComplete="off"
+    >
       <input
         name="query"
         defaultValue={query}

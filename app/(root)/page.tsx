@@ -1,7 +1,8 @@
 import PostCard, { PostCardType } from "@/components/PostCard";
 import SearchForm from "@/components/SearchForm";
-import { client } from "@/sanity/lib/client";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { POSTS_QUERY } from "@/sanity/lib/queries";
+import "@/app/globals.css";
 
 export default async function Home({
   searchParams,
@@ -9,8 +10,10 @@ export default async function Home({
   searchParams: Promise<{ query?: string }>;
 }) {
   const query = (await searchParams).query;
+  const params = { search: query || null };
 
-  const posts = (await client.fetch(POSTS_QUERY)) as PostCardType[];
+  const result = await sanityFetch({ query: POSTS_QUERY, params });
+  const posts = result.data as PostCardType[];
 
   return (
     <>
@@ -20,7 +23,7 @@ export default async function Home({
           Make your posts, share your thoughts, and connect with the world.
         </p>
 
-        <SearchForm query={query} />
+        <SearchForm key={query} query={query} />
       </section>
 
       <section className="section-container">
@@ -38,6 +41,8 @@ export default async function Home({
           )}
         </ul>
       </section>
+
+      <SanityLive />
     </>
   );
 }
