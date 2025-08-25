@@ -22,6 +22,12 @@ export default function Home() {
         <section
           id="despre"
           className="hidden opacity-0 transition-opacity duration-700 ease-in-out bg-[#C0E3D3] text-green-900 py-20 px-6 text-center min-h-[80vh] flex flex-col items-center justify-center"
+            style={{
+                    backgroundImage: "url('/background.jpg')",
+                    backgroundRepeat: "repeat",
+                    backgroundSize: "420px",
+                    backgroundPosition: "top left",
+  }}
         >
           <div className="max-w-3xl mx-auto mb-12">
             <h2 className="text-4xl font-bold mb-6">Cine suntem?</h2>

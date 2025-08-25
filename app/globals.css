@@ -181,7 +181,7 @@ html {
   }
 
   .hero-container {
-    @apply max-w-[1600px] w-full flex flex-col lg:flex-row items-center justify-center gap-24;
+    @apply max-w-[1600px] w-full flex flex-col lg:flex-row items-center justify-center gap-15;
   }
 
   .hero-text {
@@ -189,7 +189,7 @@ html {
   }
 
   .hero-title {
-    @apply text-green-900 font-extrabold text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-tight;
+    @apply text-green-900 font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight;
   }
 
   .hero-button-container {
@@ -248,7 +248,11 @@ html {
   }
 
   .navbar-links {
-    @apply hidden lg:flex gap-10 text-2xl text-green-900;
+    @apply hidden lg:flex gap-10 text-2xl text-green-900 ;
+  }
+
+  .hover-animation {
+    @apply hover:scale-110 transition;
   }
 
   .navbar-mobile-toggle {
@@ -296,5 +300,15 @@ html {
     @apply opacity-100 translate-x-0;
   }
 
+  .animate-menu-down {
+    animation: menu-down 240ms ease-out both;
+    transform-origin: top;
+    will-change: transform, opacity;
+  }
+
+  @keyframes menu-down {
+    from { transform: translateY(-12px); opacity: 0; }
+    to   { transform: translateY(0);      opacity: 1; }
+  }
 
 }
