@@ -300,8 +300,13 @@ html {
     @apply opacity-100 translate-x-0;
   }
 
-  .animate-menu-down {
+   .animate-menu-down {
     animation: menu-down 240ms ease-out both;
+    transform-origin: top;
+    will-change: transform, opacity;
+  }
+  .animate-menu-up {
+    animation: menu-up 180ms ease-in both;
     transform-origin: top;
     will-change: transform, opacity;
   }
@@ -309,6 +314,11 @@ html {
   @keyframes menu-down {
     from { transform: translateY(-12px); opacity: 0; }
     to   { transform: translateY(0);      opacity: 1; }
+  }
+
+  @keyframes menu-up {
+    from { transform: translateY(0);      opacity: 1; }
+    to   { transform: translateY(-12px);  opacity: 0; }
   }
 
 }

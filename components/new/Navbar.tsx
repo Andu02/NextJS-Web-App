@@ -33,14 +33,18 @@ export default function Navbar() {
       {/* Meniu mobil cu Sheet */}
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <button className="navbar-mobile-toggle lg:hidden">
+          <button className="navbar-mobile-toggle lg:hidden" aria-label="Deschide meniul">
             {open ? <X size={28} /> : <Menu size={28} />}
           </button>
         </SheetTrigger>
 
         <SheetContent
           side="top"
-          className="bg-white flex flex-col items-center gap-4 py-4 pt-[70px] shadow-lg"
+          className="
+            bg-white flex flex-col items-center gap-4 py-4 pt-[70px] shadow-lg
+            data-[state=open]:animate-menu-down
+            data-[state=closed]:animate-menu-up
+          "
         >
           {/* Titlu invizibil pentru accesibilitate */}
           <SheetHeader className="sr-only">
